@@ -69,9 +69,20 @@ backspaced away, and an empty code box being removed with backspace.
 
 ## Install
 
+The plugin lives in the [deepseek-harness-plugins](https://github.com/asiniy/deepseek-harness-plugins)
+repository, one folder per plugin. Clone it and link the folder into a
+profile:
+
 ```bash
+git clone git@github.com:asiniy/deepseek-harness-plugins.git \
+  ~/Documents/deepseek-harness/default-workspace/deepseek-harness-plugins
 python3 ~/Documents/deepseek-harness/default-workspace/install-composer-code.py
 ```
+
+The installer links the bundle into `~/.dsh/profiles/web/node_modules/@local/`
+and records it in the profile manifest (dependencies + `dsh.profile.bundles`),
+which is the same work `pnpm add` would do — the npm registry is unreachable
+from this machine.
 
 The script links the bundle into `~/.dsh/profiles/web/node_modules/@local/`
 and records it in the profile manifest (dependencies + `dsh.profile.bundles`),
