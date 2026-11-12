@@ -249,6 +249,15 @@ await check('backspacing the code keeps the keystrokes visible', async () => {
   assert.equal(visible, true, 'the keystroke went into text that is not drawn')
 })
 
+await check('a closing backtick does not open a second span', async () => {
+  await clearComposer()
+  await type('`abcde`, `')
+  const state = await composer()
+  const chips = (state.html.match(/dsh-inline-code/g) || []).length
+  assert.equal(chips, 1, 'the closing backtick opened a second span')
+  assert.equal(state.text, '`abcde`, `', 'the message lost its markdown')
+})
+
 await check('an empty code box is removed with backspace', async () => {
   await clearComposer()
   await type('```')

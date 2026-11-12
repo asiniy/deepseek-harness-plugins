@@ -39,11 +39,33 @@
  * does not look the way this plugin expects is left alone.
  */
 
+/**
+ * The code spans of one text node.
+ *
+ * The scan has no left boundary: a backtick opens a code span wherever it
+ * stands. `skip` is the number of characters at the start of the text that
+ * are already a delimiter — the closing backtick of the span before this
+ * node closes that span and cannot open another one.
+ *
+ * @param {string} text - the text of the node.
+ * @param {number} skip - characters at the start that are already a delimiter.
+ * @returns {Array<[number, number]>} the ranges of the code spans.
+ */
+function scanInlineSpans(text, skip) {
+  const ranges = []
+  const body = text.slice(skip)
+  const pattern = /`([^`\n]+)`/g
+  let match = pattern.exec(body)
+  while (match !== null) {
+    ranges.push([match.index + skip, match.index + skip + match[0].length])
+    match = pattern.exec(body)
+  }
+  return ranges
+}
+
 window.__ModuleLoader__.load({
   id: '@local/composer-code',
   factory() {
-    /** Inline code span: a backtick pair with a non-empty, single-line body. */
-    const INLINE_RE = /`([^`\n]+)`/g
     /** The fence that opens and closes a code block. */
     const FENCE = '```'
     /** Registered node type of the inline code span. */
@@ -305,13 +327,11 @@ window.__ModuleLoader__.load({
        */
       function applyInlineCode(node) {
         const text = node.getTextContent()
-        INLINE_RE.lastIndex = 0
-        const ranges = []
-        let match = INLINE_RE.exec(text)
-        while (match !== null) {
-          ranges.push([match.index, match.index + match[0].length])
-          match = INLINE_RE.exec(text)
-        }
+        // The text right after a code span starts with that span's closing
+        // backtick: it closed the span and cannot open another one.
+        const previous = node.getPreviousSibling()
+        const skip = previous !== null && previous.getType() === CODE_TYPE && text.startsWith('`') ? 1 : 0
+        const ranges = scanInlineSpans(text, skip)
         if (ranges.length === 0) return
         const caret = caretOffsetIn(node)
         const offsets = []

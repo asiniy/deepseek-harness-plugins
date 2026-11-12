@@ -50,15 +50,26 @@ expects is left alone.
 
 ## Tests
 
-There is no unit test for the plugin: its logic is Lexical, and Lexical is
-not installable on this machine (the npm registry answers 403). The check is
-therefore a live one — `test-live.mjs` drives the composer of the running Web
-UI through the Chrome DevTools Protocol, types with real key events, and
-asserts what the user sees:
+Two checks, because the plugin has two kinds of logic:
+
+- `test-scan.mjs` — headless. The code span scan is a pure function over a
+  string, so it is tested without a browser: which backticks pair up into a
+  span, that a span opens wherever the backtick stands, and that the closing
+  backtick of a span cannot open another one.
+- `test-live.mjs` — the live check. The rest of the plugin is Lexical, and
+  Lexical is not installable on this machine (the npm registry answers 403),
+  so the check drives the composer of the running Web UI through the Chrome
+  DevTools Protocol, types with real key events, and asserts what the user
+  sees:
 
 ```bash
+node composer-code/test-scan.mjs
 node composer-code/test-live.mjs
 ```
+
+The live check needs the Host to serve the current plugin bundle: the Host
+reads the plugin files when it composes the profile, so restart `dsh web`
+after changing the plugin.
 
 It needs `dsh web` running and the Chrome instance the harness drives
 (127.0.0.1:9222). Seven checks: the inline chip and its plain backticks, the
