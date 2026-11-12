@@ -51,6 +51,22 @@ profile patch.
 
 `install/install.py --profile <dir>` installs into another profile.
 
+## Tests
+
+Every plugin in this repository has a check:
+
+| Plugin | Check | Needs |
+| --- | --- | --- |
+| [`composer-code`](composer-code) | `test-scan.mjs` — which backticks pair up into a code span. | nothing |
+| [`composer-code`](composer-code) | `test-live.mjs` — the composer of the running Web UI, typed with real key events. | `dsh web` and the Chrome on 127.0.0.1:9222 |
+| [`session-unread`](session-unread) | `test-client.mjs` — the menu entry, the row markers, the persisted set. | nothing |
+| [`turn-sound`](turn-sound) | `test-client.mjs` — what rings, the debounce, the mute, the packaged sound. | nothing |
+
+```bash
+./test.sh                                   # the headless checks
+node composer-code/test-live.mjs             # the live check
+```
+
 ## Writing a plugin
 
 A plugin is a package with two halves:

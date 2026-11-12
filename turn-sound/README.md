@@ -49,6 +49,18 @@ file into `assets/` and `build-client.py` picks it up instead (it prefers this
 one); `assets/make-chime.py` writes a generated two-tone chime for that
 (16-bit mono PCM, 22 kHz, ~33 KB).
 
+## Tests
+
+`test-client.mjs` is a headless check of the browser half: it runs the
+plugin against a fake window, a fake plugin context and a fake audio
+context, and asserts what rings and what does not — an approval, changed
+files, a finished turn — plus the debounce, the mute setting, the unlock
+listeners, and that the built bundle carries the packaged sound.
+
+```bash
+node turn-sound/test-client.mjs
+```
+
 ## Install
 
 Clone the repository and link the folder into a profile:

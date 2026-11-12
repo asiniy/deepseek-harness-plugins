@@ -13,6 +13,7 @@
   "files": [
     "index.js",
     "client.js",
+    "test-client.mjs",
     "client.source.js",
     "build-client.py",
     "cordis.patch.yml",

@@ -45,8 +45,9 @@ def main() -> None:
     payload = base64.b64encode(sound.read_bytes()).decode("ascii")
     data_uri = f"data:{mime};base64,{payload}"
 
-    # Keep the generated file readable: one long line for the payload.
-    built = template.replace(PLACEHOLDER, data_uri)
+    # Only the constant is replaced: the comment names the placeholder too,
+    # and the sound would be embedded twice.
+    built = template.replace(f"'{PLACEHOLDER}'", f"'{data_uri}'")
     TARGET.write_text(built, encoding="utf-8")
     print(f"wrote {TARGET} ({len(built)} bytes, sound {sound.name}, {len(payload)} base64 chars)")
 
