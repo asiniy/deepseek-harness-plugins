@@ -1,0 +1,6 @@
+{
+  "meta": {
+    "title": "Composer code styling",
+    "description": "Shows inline code as a chip and a ``` fence as a grey code block in the Web UI composer."
+  }
+}

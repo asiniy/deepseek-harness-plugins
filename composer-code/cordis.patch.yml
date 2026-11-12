@@ -1,0 +1,6 @@
+# Host row for the composer-code bundle.
+# The browser half (client.js) owns the feature; this row exists so the Host
+# publishes the package to the client module registry.
+- insert:
+    - id: composer-code
+      name: '@local/composer-code'
