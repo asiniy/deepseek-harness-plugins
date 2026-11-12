@@ -13,7 +13,8 @@ ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 for test in \
   "$ROOT/composer-code/test-scan.mjs" \
   "$ROOT/session-unread/test-client.mjs" \
-  "$ROOT/turn-sound/test-client.mjs"
+  "$ROOT/turn-sound/test-client.mjs" \
+  "$ROOT/chrome/test-all.mjs"
 do
   echo "== $(basename "$(dirname "$test")")/$(basename "$test")"
   node "$test"

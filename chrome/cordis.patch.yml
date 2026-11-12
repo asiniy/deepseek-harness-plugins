@@ -1,0 +1,44 @@
+# Host row for the chrome bundle.
+#
+# The plugin gives every harness session its own browser session: its own
+# Playwright MCP server, its own tab in your everyday Chrome (through
+# Playwright's Chrome extension) and its own tab group in the tab strip. The
+# pairing token lives in ~/.dsh/.env; the plugin reads it from there.
+- insert:
+    - id: chrome
+      name: '@local/chrome'
+      config:
+        serverDir: /home/aleksandrantonov/.local/share/dsh-playwright-mcp
+        serverCommand: node
+        serverArgs:
+          - /home/aleksandrantonov/.local/share/dsh-playwright-mcp/cli.js
+          - --extension
+          - --timeout-action
+          - '15000'
+          - --timeout-navigation
+          - '60000'
+          - --output-dir
+          - /home/aleksandrantonov/.local/share/dsh-playwright-mcp/artifacts
+          - --output-max-size
+          - '52428800'
+        serverName: playwright
+        toolCallTimeoutMs: 120000
+        # The origins the agent may open. The same list the ChatGPT browser
+        # extension enforces for this user.
+        allowedOrigins:
+          - https://chatgpt.com
+          - https://jenkins.lab.engage.int.ringcentral.com
+          - https://git.ringcentral.com
+          - https://jira.ringcentral.com
+          - https://www.google.com
+          - https://jupiter-ct.sentry.io
+          - https://html.duckduckgo.com
+          - https://www.bing.com
+          - https://www.networkworld.com
+          - https://www.sec.gov
+          - https://www.nextplatform.com
+          - https://www.aboutamazon.com
+          - https://www.marketwatch.com
+          - https://gitlab.alpinelinux.org
+          - https://github.com
+          - http://127.0.0.1:3080

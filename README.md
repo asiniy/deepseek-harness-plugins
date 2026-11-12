@@ -15,6 +15,7 @@ a browser module only while the Host holds a Loader entry for it.
 | [`composer-code`](composer-code) | Codex-style markdown in the composer: `inline code` becomes a chip, a ``` fence opens a grey code box. |
 | [`turn-sound`](turn-sound) | A short chime when a turn needs attention: an approval, changed files, or a finished turn. |
 | [`session-unread`](session-unread) | A "Mark as unread" entry in the session context menu, a dot on the session row, and the marked session floats to the top. |
+| [`chrome`](chrome) | Browser control, one session at a time: every session drives its own tab in your everyday Chrome (through Playwright's Chrome extension) and gets its own tab group in the tab strip. |
 
 ## Installing a plugin
 
@@ -61,6 +62,7 @@ Every plugin in this repository has a check:
 | [`composer-code`](composer-code) | `test-live.mjs` — the composer of the running Web UI, typed with real key events. | `dsh web` and the Chrome on 127.0.0.1:9222 |
 | [`session-unread`](session-unread) | `test-client.mjs` — the menu entry, the row markers, the persisted set. | nothing |
 | [`turn-sound`](turn-sound) | `test-client.mjs` — what rings, the debounce, the mute, the packaged sound. | nothing |
+| [`chrome`](chrome) | `test-all.mjs` — the MCP client, the tool bridge, the session rules, and the definition against the harness's own tool registry. | nothing |
 
 ```bash
 ./test.sh                                   # the headless checks

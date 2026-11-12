@@ -1,0 +1,33 @@
+{
+  "name": "@local/chrome",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Per-session browser control: every harness session drives its own tab in your everyday Chrome.",
+  "exports": {
+    ".": "./index.js",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "index.js",
+    "lib/mcp-client.js",
+    "lib/bridge.js",
+    "lib/session.js",
+    "cordis.patch.yml",
+    "launch-chrome.sh",
+    "seed-profile.sh",
+    "install-playwright-mcp.sh",
+    "README.md"
+  ],
+  "scripts": {
+    "test": "node --test \"test/*.test.mjs\""
+  },
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    }
+  },
+  "engines": {
+    "node": ">=22"
+  }
+}

@@ -30,6 +30,7 @@ PACKAGES = {
     "composer-code": "@local/composer-code",
     "turn-sound": "@local/turn-sound",
     "session-unread": "@local/session-unread",
+    "chrome": "@local/chrome",
 }
 
 
