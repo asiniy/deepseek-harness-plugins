@@ -13,6 +13,8 @@ a browser module only while the Host holds a Loader entry for it.
 | Plugin | What it does |
 | --- | --- |
 | [`composer-code`](composer-code) | Codex-style markdown in the composer: `inline code` becomes a chip, a ``` fence opens a grey code box. |
+| [`turn-sound`](turn-sound) | A short chime when a turn needs attention: an approval, changed files, or a finished turn. |
+| [`session-unread`](session-unread) | A "Mark as unread" entry in the session context menu, a dot on the session row, and the marked session floats to the top. |
 
 ## Installing a plugin
 

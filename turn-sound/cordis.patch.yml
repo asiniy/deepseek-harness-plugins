@@ -1,0 +1,6 @@
+# Host row for the turn-sound bundle.
+# The browser half (client.js) does the actual chime; this row exists so the
+# Host publishes the package to the client module registry.
+- insert:
+    - id: turn-sound
+      name: '@local/turn-sound'

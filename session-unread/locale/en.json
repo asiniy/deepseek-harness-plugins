@@ -1,0 +1,6 @@
+{
+  "meta": {
+    "title": "Session unread marker",
+    "description": "Adds a 'Mark as unread' entry to the session context menu and marks the row in the sidebar."
+  }
+}

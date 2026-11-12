@@ -1,0 +1,6 @@
+{
+  "meta": {
+    "title": "Turn sound",
+    "description": "Plays a short chime in the Web UI when a chat turn finishes."
+  }
+}

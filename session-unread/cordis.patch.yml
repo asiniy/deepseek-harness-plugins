@@ -1,0 +1,6 @@
+# Host row for the session-unread bundle.
+# The browser half (client.js) owns the feature; this row exists so the Host
+# publishes the package to the client module registry.
+- insert:
+    - id: session-unread
+      name: '@local/session-unread'
