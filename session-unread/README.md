@@ -54,13 +54,11 @@ setter, so this plugin cannot set it — it keeps its own set and its own dot.
 ## Install
 
 The plugin lives in the [deepseek-harness-plugins](https://github.com/asiniy/deepseek-harness-plugins)
-repository, one folder per plugin. Clone it and link the folder into a
-profile:
+repository, one folder per plugin. Clone it and install the plugin:
 
 ```
-git clone git@github.com:asiniy/deepseek-harness-plugins.git \
-  ~/Documents/deepseek-harness/default-workspace/deepseek-harness-plugins
-python3 ~/Documents/deepseek-harness/default-workspace/install-session-unread.py
+git clone git@github.com:asiniy/deepseek-harness-plugins.git
+python3 deepseek-harness-plugins/install/install.py session-unread
 ```
 
 That links the package into `~/.dsh/profiles/web/node_modules/@local/` and
