@@ -6,8 +6,9 @@ serves image formats, and the Web UI's plugin bundle route has no place for a
 binary payload. This script inlines the sound in `assets/` as a base64 data
 URI into the placeholder in `client.source.js` and writes `client.js`.
 
-The packaged sound is `assets/chime.wav` (see `assets/make-chime.py`); drop
-another file into `assets/` and it is picked up instead.
+The packaged sound is `assets/aoe2-attack.mp3`; drop another audio file into
+`assets/` and it is picked up instead (`assets/make-chime.py` writes a
+generated chime for that).
 
 Usage:
     python3 build-client.py
@@ -24,7 +25,10 @@ MIME_BY_SUFFIX = {".wav": "audio/wav", ".mp3": "audio/mpeg", ".ogg": "audio/ogg"
 
 
 def packaged_sound() -> pathlib.Path:
-    """The sound file in `assets/`, by preference for a wav."""
+    """The sound file in `assets/`: the packaged one, or any other audio."""
+    preferred = ROOT / "assets" / "aoe2-attack.mp3"
+    if preferred.exists():
+        return preferred
     sounds = sorted(path for path in (ROOT / "assets").iterdir() if path.suffix.lower() in MIME_BY_SUFFIX)
     if not sounds:
         raise SystemExit("no sound file in assets/")
