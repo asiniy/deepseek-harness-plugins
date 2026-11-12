@@ -18,7 +18,13 @@ a browser module only while the Host holds a Loader entry for it.
 
 ## Installing a plugin
 
-A plugin is installed into a Harness profile the way `pnpm add` would do it:
+```bash
+git clone git@github.com:asiniy/deepseek-harness-plugins.git
+python3 deepseek-harness-plugins/install/install.py composer-code
+```
+
+The installer does what `pnpm add` would do — the npm registry is
+unreachable from this machine and pnpm is not installed:
 
 1. link the package into `<profile>/node_modules/@<scope>` (the scope is the
    package name, e.g. `@local/composer-code`),
@@ -38,9 +44,12 @@ A plugin is installed into a Harness profile the way `pnpm add` would do it:
 }
 ```
 
-The Host picks the bundle up on the next reload of the profile; the browser
-half is served from `/plugins/...` and can be reloaded without restarting the
-Host when its directory is listed in the `hmr` row of the profile patch.
+The Host composes the profile at boot, so restart `dsh web` afterwards. The
+browser half is served from `/plugins/...` and can be reloaded without
+restarting the Host when its directory is listed in the `hmr` row of the
+profile patch.
+
+`install/install.py --profile <dir>` installs into another profile.
 
 ## Writing a plugin
 
