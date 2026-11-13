@@ -56,12 +56,12 @@ profile patch.
 
 Every plugin in this repository has a check:
 
-| Plugin | Check | Needs |
-| --- | --- | --- |
-| [`composer-code`](composer-code) | `test-scan.mjs` — which backticks pair up into a code span.<br>`test-live.mjs` — the composer of the running Web UI, typed with real key events. | the live check needs `dsh web` and the Chrome on 127.0.0.1:9222 |
-| [`session-unread`](session-unread) | `test-client.mjs` — the menu entry, the row markers, the persisted set. | nothing |
-| [`turn-sound`](turn-sound) | `test-client.mjs` — what rings, the debounce, the mute, the packaged sound. | nothing |
-| [`chrome`](chrome) | `test-all.mjs` — the MCP client, the tool bridge, the session rules, and the definition against the harness's own tool registry. | nothing |
+| Plugin | Needs |
+| --- | --- |
+| [`composer-code`](composer-code) — `test-scan.mjs`, `test-live.mjs` | the live check needs `dsh web` and the Chrome on 127.0.0.1:9222 |
+| [`session-unread`](session-unread) — `test-client.mjs` | nothing |
+| [`turn-sound`](turn-sound) — `test-client.mjs` | nothing |
+| [`chrome`](chrome) — `test-all.mjs` | nothing |
 
 ```bash
 ./test.sh                                   # the headless checks
